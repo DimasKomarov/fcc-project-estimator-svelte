@@ -9,9 +9,10 @@
 
     // Условия для смены надписи на кнопках
     $: mode = id ? "edit" : "add";
-    $: console.log(price);
+    
     $: canSumbit = price >=0 && name !== "";
-
+    
+    
     // функция для изменения состояния кнопки добавления
     function submit() {
        if (!canSumbit) {
