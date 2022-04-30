@@ -1,12 +1,41 @@
-<!-- Скрипт, в котором мы задаем id, название материала и его цену -->
+<!-- Скрипт, в котором мы задаем id, название материала и его цену 
+    + изменение  -->
 <script>
+    import materialStore from "./material-store.js"
     export let id;
     export let name="";
-    export let price;
-
-    $: mode = id ? "edit" : "add"
+    export let price = 5;
 
 
+    // Условия для смены надписи на кнопках
+    $: mode = id ? "edit" : "add";
+    $: console.log(price);
+    $: canSumbit = price >=0 && name !== "";
+
+    // функция для изменения состояния кнопки добавления
+    function submit() {
+       if (!canSumbit) {
+           return;
+       }
+
+    // Если значение mode === add - 
+    // добавляем название и цену в функцию materialStore  
+       if (mode === "add") {
+        materialStore.add(name,price);
+       }
+
+       price="";
+       name="";
+       id = indefined;
+    }
+
+
+    // функция для изменения состояния кнопки отмены
+    function cancel() {
+        price=5;
+        name="";
+        id=indefined;
+    }
 </script>
 
 
@@ -24,7 +53,7 @@
 
 
 <!-- Форма, в которой пользователь вводит материалы -->
-<form>
+<form on:submit|preventDefault={submit}>
    <fieldset>
         <label for="nameField">Material</label>
         <input bind:value={name} 
@@ -43,12 +72,17 @@
    
  <!--Кнопка добавления  -->
    <button 
+   disabled={!canSumbit}
    class="float-right"
-   type="submit">Add</button>
+   type="submit">{mode}</button>
    
-<!-- Кнопка отмены -->
-   <button
+
+   <!-- Конструкция if для активации кнопки отмены -->
+   {#if mode === "edit"}
+   
+   <!-- Кнопка отмены -->
+   <button on:click={cancel}
    class="float-right"
    type="button">Cancel</button>
-
+   {/if}
 </form>
