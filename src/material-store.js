@@ -27,6 +27,20 @@ const add = (name, price) => {
     })
 }
 
+// функция для изменения названия и цены материала в качестве констант,
+// а затем возврат массива материалов
+const edit = (id, name, price) => {
+    materialStore.update((items) => {
+       const index = items.findIndex((i) => i.id === id);
+        
+       items[index].name = name;
+       items[index].price = price;
+
+       return items;
+    })
+}
+
+
 // метод, который объеиняет массив материалов и их вид (ключ, значение) 
 materialStore.subscribe((items) => {
     console.log(items);
@@ -40,4 +54,5 @@ export default {
     subscribe: materialStore.
     subscribe,
     add,
+    edit,
 }

@@ -5,12 +5,15 @@
 
 	// Переменные id, name и price для добавления в поля
 	let id;
-	let name="";
+	let name = "";
 	let price = 5;
 
-	// Функция edit, которая выводит в консоль event 
+	// Функция edit, которая присваивает event.detail 
+	// переменным id, name 
+	// и price, при клике на добавленный материал позвлоялет 
+	// редактирвоать его название и цену  
 	function edit(event) {
-		console.log(event, "event");
+		({id, name, price} = event.detail);
 	}
 
 
