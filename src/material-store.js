@@ -40,6 +40,12 @@ const edit = (id, name, price) => {
     })
 }
 
+// Функция удаления элементов
+const remove = (id) => {
+    materialStore.update((items) => {
+        return items.filter((i) => i.id !== id);
+    });
+}
 
 // метод, который объеиняет массив материалов и их вид (ключ, значение) 
 materialStore.subscribe((items) => {
@@ -55,4 +61,5 @@ export default {
     subscribe,
     add,
     edit,
+    remove,
 }
