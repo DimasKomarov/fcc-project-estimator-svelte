@@ -55,7 +55,6 @@ materialStore.subscribe((items) => {
     localStorage.setItem(key, jsonString);
 })
 
-
 // дефолтный экспорт
 export default {
     subscribe: materialStore.

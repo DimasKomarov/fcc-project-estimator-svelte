@@ -3,7 +3,6 @@
 	import Table from "./Table.svelte";
 	import Form from "./Form.svelte";
 
-
 	// Функция edit, которая присваивает event.detail 
 	// переменным id, name 
 	// и price, при клике на добавленный материал позвлоялет 
@@ -11,8 +10,6 @@
 	function edit(event) {
 		({id, name, price} = event.detail);
 	}
-
-
 </script>
 
 <!-- Прписываем стиль мейн контейнеру -->
@@ -36,5 +33,4 @@
 
 	<!-- В таблице вызываем функцию edit -->
 	<Table on:edit={edit} />
-
 </main>

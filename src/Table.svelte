@@ -1,4 +1,3 @@
-
 <!-- Импортируем materialStore -->
 <script>
     import { createEventDispatcher } from "svelte";
@@ -20,7 +19,6 @@
         return prev;
     }, 0);
     
-    
     function edit(id, name, price) {
         dispatch("edit", {id, name, price})
     }
@@ -36,7 +34,6 @@
     function remove(id) {
         materialStore.remove(id)
     }
-
 
 </script>
 
@@ -64,8 +61,6 @@
     </thead>
     <!-- Тело таблицы где указаны материалы и цена -->
     <tbody>
-        
-        <!-- ??? -->
         {#each materials as material (material.id)}
          <tr on:click={edit(material.id, material.name, material.price)}>
              <td>{material.name}</td>
@@ -76,7 +71,6 @@
              </td>
          </tr>   
         {/each}
-        
         <!-- Последняя строка (сумма за товары) -->
         <tr>
             <td>Total</td>
