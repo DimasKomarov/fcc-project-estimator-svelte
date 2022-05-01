@@ -12,7 +12,6 @@ if (localStorage.getItem(key)) {
     materialStore.set(JSON.parse(localStorage.getItem(key)));
 }
 
-
 // функция для добавления названия и цены материала в качестве констант,
 // а затем возврат массива материалов
 const add = (name, price) => {
@@ -23,7 +22,7 @@ const add = (name, price) => {
             id: new Date().getTime()
         }
         
-        return [item,...items];
+        return [...items, item];
     })
 }
 

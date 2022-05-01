@@ -3,10 +3,6 @@
 	import Table from "./Table.svelte";
 	import Form from "./Form.svelte";
 
-	// Переменные id, name и price для добавления в поля
-	let id;
-	let name = "";
-	let price = 5;
 
 	// Функция edit, которая присваивает event.detail 
 	// переменным id, name 
@@ -36,7 +32,7 @@
 
 	<!-- Вызываем имортированные классы 
 	+  присваиваем форме переменные id, name и price-->
-	<Form bind:price bind:id bind:name />
+	<Form  />
 
 	<!-- В таблице вызываем функцию edit -->
 	<Table on:edit={edit} />
