@@ -6,6 +6,7 @@
     export let id;
     export let name = "";
     export let price = 5;
+    let inputPrice;
     
     // Условия для смены надписи на кнопках
     $: mode = id ? "edit" : "add";
@@ -31,11 +32,17 @@
       price = 5;
       id = undefined;
     }
+    //   Если значение mode соответствует add -
+    // изменяем индентификатор, название и цену
+        if (mode === "edit") {
+            materialStore.edit(id, name, price)
+        }
 
     // Функция для изменения состояния кнопки отмены 
     function cancel() {
       price = 5;
       name = "";
+      inputPrice.value = price;
       id = undefined;
     }
   </script>
@@ -62,6 +69,7 @@
   
       <label for="priceField">Price</label>
       <input
+        bind:this={inputPrice}
         bind:value={price}
         min="0"
         step="any"
