@@ -1,8 +1,11 @@
 
 <!-- Импортируем materialStore -->
 <script>
+    import { createEventDispatcher } from "svelte";
     import materialStore from "./material-store.js"
 
+    const dispatch = createEventDispatcher();
+    
     // создаем массив, который хранит материалы
     let materials = [];
     
@@ -17,6 +20,12 @@
         return prev;
     }, 0);
     
+    
+    function edit(id, name, price) {
+        dispatch("edit", {id, name, price})
+    }
+
+    // Значок доллара возле суммы
     const formatter = new Intl.NumberFormat
     ("en-US", {
         style: "currency",
@@ -29,6 +38,9 @@
 <style>
     table {
         width: 100%;
+    }
+    tr {
+        cursor: pointer;
     }
 </style>
 
@@ -46,7 +58,7 @@
         
         <!-- ??? -->
         {#each materials as material (material.id)}
-         <tr>
+         <tr on:click={edit(material.id, material.name, material.price)}>
              <td>{material.name}</td>
              <td>{formatter.format(material.price)}</td>
              <td>
@@ -54,6 +66,7 @@
              </td>
          </tr>   
         {/each}
+        <!-- Последняя строка (сумма за товары) -->
         <tr>
             <td>Total</td>
             <td colspan="2">{formatter.format(total)}</td>
